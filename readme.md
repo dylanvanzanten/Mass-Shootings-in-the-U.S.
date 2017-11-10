@@ -116,6 +116,7 @@ Here below you can see the directory:
 
 ### ***Steps*** 🚶‍♂️
 1. Started with the map 🗺️
+
 I've first started with the map to show the locations where the mass shootings took place via dots. The dots give the size how many victims where killed. For the map I've used the following example from the __[bl.ocks](https://bl.ocks.org/mbostock/4090848)__. This is a basic map where the states have being rendered by an __[.JSON](https://d3js.org/us-10m.v1.json)__ file. Here below you can see basic code:
 
 ```javascript
@@ -199,6 +200,7 @@ on("mousemove", function (d) {
 ```
 
 2. Started with the pie chart 🍰
+
 After I've finished with the map I went to create the pie chart. I took the example from __[bl.ocks](https://bl.ocks.org/mbostock/3887235)__. In the pie chart I want to show the how much a mass shooting was executed by person sorted per race. So first of all I need to add different colors per race. I've added the following code to give per race a color:
 
 ```javascript
@@ -262,6 +264,7 @@ The legend I've added I used this from __[one of my previous assessments](https:
 
 
 3. Started with the bubble chart 👐
+
 With the bubble chart I wanted to show the amount of how many mass shootings where in which state. First of I cleaned the code up a bit and removed the stuff I don't need really. After that I've made a own color scale to the bubble chart, which you can see below:
 
 ```javascript
@@ -290,7 +293,8 @@ transition()
     .duration(2000);
 ```
 
-4. Put all the charts into the page
+4. Put all the charts into the page 📄
+
 After I added the charts I then went to place all the charts into the main page. To I linked al the Javascript files into the index.html file. When I've done that I only saw one chart, but in the inspector they did show the data. After some time I finally figured it out: I had to change the main things inside a chart. So for example:
 
 ```javascript
@@ -304,9 +308,11 @@ var svgBar = d3.select(".svgBar")
 Now it has a unique name and it cannot be interrupted bij other charts.
 
 5. Adding text to support the charts 📝
+
 I've added some sentences to support the charts.
 
 6. Adding style & place the charts 👔
+
 So now when I've done all the charts I went to focus on the styling of the page. First I set up the `index.html` correctly (so that it's semantic correct (emoji)). I used most HTML5 coding to setup the page.
 
 The page directory is like this:

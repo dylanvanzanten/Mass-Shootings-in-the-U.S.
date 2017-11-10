@@ -112,5 +112,5 @@ d3.csv("data/shootingsperstate.csv", function (d) {
         })
         .text(function (d) {
             return d;
-        });
+        })
 });
