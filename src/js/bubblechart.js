@@ -1,29 +1,29 @@
-//Sets the diameter of the svg
+// Original: https://bl.ocks.org/mbostock/4063269
+// Sets the diameter of the svg.
 var diameter = 900;
 
-//Selects svg from document and sets the diameter
+// Selects svg from document and sets the diameter.
+// Gives a attribute thw isth and height to it.
 var svgBubble = d3.select('.svgBubble')
     .attr("width", diameter)
     .attr("height", diameter)
     .append("g");
 
-//Sets the format
+// Format for the bubble chart.
 var format = d3.format(",d");
 
-//Sets own colorBubble scheme
-var colorBubble = d3.scaleOrdinal(["#C50D2F", "#5C9CCC", "00a76f", "#0A5191", "#333136", "#ADADAF"]);
-
-// create a new circle-packing layout
 var pack = d3.pack()
     .size([diameter, diameter])
-    .padding(3.5);
+    .padding(6);
 
-//Gets the data out of the CSV file.
+// Load the data.
+// Link the correct data to the places I want to show them on the bubble chart.
 d3.csv("data/shootingsperstate.csv", function (d) {
     d.value = +d.value;
     if (d.value) return d;
 }, function (error, classes) {
     if (error) throw error;
+
     var root = d3.hierarchy({
             children: classes
         })
@@ -39,31 +39,45 @@ d3.csv("data/shootingsperstate.csv", function (d) {
             }
         });
 
-    //Selects all nodes
+    // Select all the nodes and append a group to it.
+    // The group gets a classname.
     var node = svgBubble.selectAll(".node")
-        .data(pack(root).leaves())
-        .enter().append("g")
+        .data(pack(root)
+        .leaves())
+        .enter()
+        .append("g")
         .attr("class", "node")
         .attr("transform", function (d) {
             return "translate(" + d.x + "," + d.y + ")";
         });
 
-    //Append circle to the root node and adds atrributes
+    // Append circle to the root node and adds atrributes
     node.append("circle")
         .attr("id", function (d) {
             return d.id;
         })
+        // Give the bubbles a style.
+        // If the value is lower or the same with 5 show this color.
         .style("fill", function (d) {
-            return colorBubble(d.package);
+            if (d.value <= 5) {
+                return "rgba(183, 61, 55, 0.25)"
+            } else if (d.value <= 10) {
+                return "rgba(183, 61, 55, 0.50)"
+            } else if (d.value <= 15) {
+                return "rgba(183, 61, 55, 0.75)"
+            } else {
+                return "rgba(183, 61, 55, 1)"
+            }
         })
-        //Animate
-        .transition() //Fade
+        // Animation with a fade transition and a ease to it. 
+        // Has a delay of 1000
+        .transition()
         .delay(1000)
-        .ease(d3.easeElasticOut) // Ease animation
-        .attr("r", function (d) { // Sets the radius of the circles
+        .ease(d3.easeElasticOut)
+        .attr("r", function (d) {
             return d.r;
         })
-        .duration(2000); // Duration of 2 seconds
+        .duration(2000);
 
     node.append("clipPath")
         .attr("id", function (d) {
@@ -74,60 +88,29 @@ d3.csv("data/shootingsperstate.csv", function (d) {
             return "#" + d.id;
         });
 
-    //Appends the text labels to the root node
     node.append("text")
         .attr("clip-path", function (d) {
             return "url(#clip-" + d.id + ")";
         })
+        // Select all the tspan aka text.
         .selectAll("tspan")
         .data(function (d) {
             return d.class.split(/(?=[A-Z][^A-Z])/g);
         })
-        .enter().append("tspan")
-        .attr("class", function (d) {
-            return "champion-id" + " " + "champion-id-" + d;
-        })
+        .enter()
+        .append("tspan")
         .attr("x", 0)
+        // Animation with a fade transition and a ease to it. 
+        // Has a delay of 1000
+        .transition()
+        .delay(1000)
+        .ease(d3.easeElasticOut)
+        // Sets the radius of the circles
+        .duration(2000)
         .attr("y", function (d, i, nodes) {
-            if (d == "Ajax" || d == "PSV" || d == "Feyenoord") {
-                return 30 + (i - nodes.length / 2 - 0.5) * 10;
-            } else {
-                return 15 + (i - nodes.length / 2 - 0.5) * 10;
-            }
+            return 13 + (i - nodes.length / 2 - 0.5) * 10;
         })
-
         .text(function (d) {
             return d;
         });
-
-    node.append("text")
-        .attr("clip-path", function (d) {
-            return "url(#clip-" + d.id + ")";
-        })
-
-
-        .append("tspan")
-        .attr("class", function (d) {
-            return "champion-value" + " " + "champion-value-" + d.id;
-        })
-        .attr("x", 0)
-        .attr("y", function (d, i, nodes) {
-            return 0 + (i - nodes.length / 2 - 0.5);
-        })
-        .text(function (d) {
-            return format(d.value);
-        });
-
-
-    // node.selectAll("tspan:nth-child(2)")
-    //   .attr("y", 15);
-
-    //Append the title to the root node
-    node.append("title")
-        .text(function (d) {
-            return d.id + "\n" + format(d.value);
-        });
-
 });
-
-//Based on https://bl.ocks.org/mbostock/4063269

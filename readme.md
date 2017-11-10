@@ -19,6 +19,17 @@ In this assignment I've created an interactive visualizations about the mass sho
 
 ---
 
+## ***Concept*** 🤔
+My Reasearch for Data subject didn't had datasets (yet!), sooo I needed to choose a news subject. I was looking on the internet and also the news and I was interested about the amount of mass shootings in the United States and what everyones reaction is about it.
+
+After I chosen my subject I went to brainstorm about a couple of concepts and came with a concept for B and A:
+
+__A:__ Visualizations that shows the general numbers of the mass shootings in the United States. You can scroll through the website to see the charts.
+
+__B:__ More details about the shootings, where the shootings took place and a deeper inside to the suspect.
+
+---
+
 ### ***Data*** #️⃣
 The data I got from __[Kaggle](https://www.kaggle.com/carlosparadis/last-50-years-us-mass-shootings/data)__. Kaggle is a platform for predictive modelling and analytics competitions in which companies and researchers post data and statisticians and data miners compete to produce the best models for predicting and describing the data. The data contains a couple of columns which you can see below:
 * __Title:__ title of the event.
@@ -65,37 +76,39 @@ I downloaded the `.csv` file and then looked into the file. The file looked like
 | Arkansas   | 2  | 
 | California | 36 |
 
+I really didn't needed to clean the data, so no kudo's for that 👎.
+
 ---
 
-### ***Directory*** (emoji)
+### ***Directory*** 📁
 Here below you can see the directory:
                                               
-    dev                                             # Main directory (emoji)
-    │── index.html                                  # Main file where everything is being loaded in (emoji)
-    │── data                                        # Directory for the data (emoji)
-    |   ├── data.csv                                # Data that is being used for the map (emoji)
-    |   ├── shootingsperrace.csv                    # Data that is being used for the pie chart (emoji)
-    |   └── shootingsperstate.csv                   # Data that is being used for the bubble chart (emoji)
+    dev                                             # Main directory
+    │── index.html                                  # Main file where everything is being loaded in
+    │── data                                        # Directory for the data
+    |   ├── data.csv                                # Data that is being used for the map
+    |   ├── shootingsperrace.csv                    # Data that is being used for the pie chart
+    |   └── shootingsperstate.csv                   # Data that is being used for the bubble chart
     |   
-    |── src                                         # Directory for the css, js, fonts etc (emoji)
-    |   ├── css                                     # Directory for the css (emoji)
-    |   |   ├── index.css                           # Main css (emoji)
-    |   |   ├── font-awesome.min.css                # Fontawesome css (emoji)
-    |   |   └── reset.min.css                       # Reset css by Eric Meyer (emoji)
+    |── src                                         # Directory for the css, js, fonts etc
+    |   ├── css                                     # Directory for the css
+    |   |   ├── index.css                           # Main css
+    |   |   ├── font-awesome.min.css                # Fontawesome css
+    |   |   └── reset.min.css                       # Reset css by Eric Meyer
     |   |     
-    |   ├── fonts                                   # Main directory for the fonts (emoji)
-    |   |   ├── fontawesome-webfont.eot             # Fontawesome font (emoji)
-    |   |   ├── fontawesome-webfont.svg             # Fontawesome font (emoji)
-    |   |   ├── fontawesome-webfont.ttf             # Fontawesome font (emoji)
-    |   |   ├── fontawesome-webfont.woff            # Fontawesome font (emoji)
-    |   |   ├── fontawesome-webfont.woff2           # Fontawesome font (emoji)
-    |   |   └── FontAwesome.eot                     # Fontawesome font (emoji)
+    |   ├── fonts                                   # Main directory for the fonts
+    |   |   ├── fontawesome-webfont.eot             # Fontawesome font
+    |   |   ├── fontawesome-webfont.svg             # Fontawesome font
+    |   |   ├── fontawesome-webfont.ttf             # Fontawesome font
+    |   |   ├── fontawesome-webfont.woff            # Fontawesome font
+    |   |   ├── fontawesome-webfont.woff2           # Fontawesome font
+    |   |   └── FontAwesome.eot                     # Fontawesome font
     |   |
-    |   └── js                                      # Directory fot the javascript (emoji)
+    |   └── js                                      # Directory fot the javascript
     |       ├── index.js                            # Main javascript
-    |       ├── bubblechart.js                      # Javascript fot the bubble chart (emoji)
-    |       ├── map.js                              # Javascript for the map (emoji)
-    |       └── piechart.js                         # Javascript for the pie chart (emoji)
+    |       ├── bubblechart.js                      # Javascript fot the bubble chart
+    |       ├── map.js                              # Javascript for the map
+    |       └── piechart.js                         # Javascript for the pie chart
     |
     └── README.md                                   # Readme.md
 
@@ -147,13 +160,43 @@ svgMap.selectAll("circle")
     .style("fill", "pink")
 ```
 
-You can see that I've already added some data to my dots. The dots have the coördinates included (the latitude and longitude!) and furthermore I set the size (radius) of the dots with the amount of fatalities that have been at the location. Now you can see the different sizes and the difference between the shootings at each location pinpointed on the map. I also changed the names per chart (which you can see at every piece of code that I will show), because if I kept them the same they won't show op the screen "but they will in the inspector!" - yes that's true, but we don't have a (emoji) with the chart then do we? (emoji).
+You can see that I've already added some data to my dots. The dots have the coördinates included (the latitude and longitude!) and furthermore I set the size (radius) of the dots with the amount of fatalities that have been at the location. Now you can see the different sizes and the difference between the shootings at each location pinpointed on the map. I also changed the names per chart (which you can see at every piece of code that I will show), because if I kept them the same they won't show op the screen "but they will in the inspector!" - yes that's true, but we don't have a 💢🗯️⚠️ with the chart then do we? 🤓.
 
-NOG TOEVOEGEN
+After alot of hours (seriously alot) I went to quit with the map. I could not continue on, because of the little time I had left for it, so I removed the map and begun to load the data into a bar chart.
 
+So to the bar chart I've changed the x-axis a bit with a couple of CSS adjustments. Furthermore, I edited the x-axis text and gave it a rotation so that the text comes a lot nicer out of it.
 
+```javascript
+svgBar.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(xBar))
+    .selectAll("text")
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", ".15em")
+    .attr("transform", "rotate(-45)")
+```
 
+Also to the bars I've added a tooltip to it to make the data more specific and readable:
 
+```javascript
+on("mousemove", function (d) {
+    tooltip
+        .style("left", d3.event.pageX - 50 + "px")
+        .style("top", d3.event.pageY - 70 + "px")
+        .style("display", "inline-block")
+        .html((d.Location) + "<br>" + (d.Fatalities) + " Fatalities");
+    })
+    // Mouseout event to remove the tooltip.
+    .on("mouseout", function (d) {
+        tooltip.style("display", "none");
+    })
+    // Give the bars a classname.
+    .attr("class", "bar")
+    .attr("x", function (d) {
+        return xBar(d.Location);
+    })
+```
 
 2. Started with the pie chart 🍰
 After I've finished with the map I went to create the pie chart. I took the example from __[bl.ocks](https://bl.ocks.org/mbostock/3887235)__. In the pie chart I want to show the how much a mass shooting was executed by person sorted per race. So first of all I need to add different colors per race. I've added the following code to give per race a color:
@@ -164,77 +207,172 @@ var colorPie = d3.scaleOrdinal()
     .range(["#E0E4CC", "#D6DAC2", "#7BB0A6", "#7BB0A6", "#92F22A", "#64DDBB"])
 ```
 
-NOG TOEVOEGEN
+to this:
+
+```javascript
+var colorPie = d3.scaleOrdinal()
+    .range(["rgba(183, 61, 55, 1)", "rgba(183, 61, 55, 0.75)", "rgba(183, 61, 55, 0.50)", "rgba(183, 61, 55, 0.25)", "#202020", "#666666"])
+```
+
+I changed the colors to more fancy colors that suits to my concept and subject.
+
+To make the pie chart a bit more different I changed and added a bit of code. First I added a circle in the middle of the piie chart to make it look like an donut chart (I know I just could've used and donut chart as a chart, but hey!). The code I added a circle is shown below:
+
+```javascript
+gPie.append("circle")
+    .attr("cx", 0)
+    .attr("cy", 0)
+    .attr("r", 200)
+    .attr("fill", "#050505");
+```
+
+As extra to the pie chart I also removed the current labels inside the pie chart and added new code as a legend, which you can see below:
+
+```javascript
+var legend = svgPie.selectAll(".legend")
+    .data(pie(data))
+    .enter()
+    .append("g")
+    .attr("transform", function (d, i) {
+        return "translate(" + (width - 950) + "," + (i * 30 + -80) + ")"; // place each legend on the right and bump each one down 15 pixels
+    })
+    .attr("class", "legend");
+    
+    legend
+        .append("rect")
+        .attr("width", 20)
+        .attr("height", 20)
+        .attr("y", 5)
+        .attr("x", -35)
+        .attr("fill", function (d, i) {
+            return colorPie(i);
+    });
+    
+    legend
+        .append("text")
+        .style("font-size", 18)
+        .attr("y", 10)
+        .attr("x", 11)
+        .text(function (d) {
+            return d.data.Race + ": " + "" + d.data.Percentage + "%";
+    });
+```
+
+The legend I've added I used this from __[one of my previous assessments](https://dylanvanzanten.github.io/fe3-assessment-3/)__ for the subject Frontend3. The race and percentage are returned in the text. 
 
 
+3. Started with the bubble chart 👐
+With the bubble chart I wanted to show the amount of how many mass shootings where in which state. First of I cleaned the code up a bit and removed the stuff I don't need really. After that I've made a own color scale to the bubble chart, which you can see below:
 
-I've added a legend to the pie chart. I used this from __[one of my previous assessments](https://dylanvanzanten.github.io/fe3-assessment-3/)__ for the subject Frontend3. 
+```javascript
+.style("fill", function (d) {
+    if (d.value <= 5) {
+        return "rgba(183, 61, 55, 0.25)"
+    } else if (d.value <= 10) {
+        return "rgba(183, 61, 55, 0.50)"
+    } else if (d.value <= 15) {
+        return "rgba(183, 61, 55, 0.75)"
+    } else {
+        return "rgba(183, 61, 55, 1)"
+    }
+})
+```
 
+I've made an if and else statements that checks if the data has a certain amount. If the data amount is true it gets that color assigned to it. Also I've added a simple transition to the bubbles and text in combination with a ease:
 
-3. Started with the bubble chart (emoji)
-NOG TOEVOEGEN
+```javascript
+transition()
+    .delay(1000)
+    .ease(d3.easeElasticOut)
+    .attr("r", function (d) {
+        return d.r;
+    })
+    .duration(2000);
+```
 
+4. Put all the charts into the page
+After I added the charts I then went to place all the charts into the main page. To I linked al the Javascript files into the index.html file. When I've done that I only saw one chart, but in the inspector they did show the data. After some time I finally figured it out: I had to change the main things inside a chart. So for example:
 
+```javascript
+var svg = d3.select(".svgBar")
+```
+to
+```javascript
+var svgBar = d3.select(".svgBar")
+```
 
+Now it has a unique name and it cannot be interrupted bij other charts.
 
-4. Adding text to support the charts (emoji)
-NOG TOEVOEGEN
+5. Adding text to support the charts 📝
+I've added some sentences to support the charts.
 
-
-
-
-5. Adding style & place the charts (emoji)
+6. Adding style & place the charts 👔
 So now when I've done all the charts I went to focus on the styling of the page. First I set up the `index.html` correctly (so that it's semantic correct (emoji)). I used most HTML5 coding to setup the page.
 
 The page directory is like this:
 
-    body                                               # The body (emoji)
-    │── header                                         # Header for the intro (emoji)
-    │    ├── div                                       # Div (emoji)
-    │    │    ├── h2                                   # h2 text (emoji)
-    │    │    ├── h1                                   # h1 text (emoji)
-    │    │    └── h6                                   # h6 text (emoji)
+    body                                               # The body
+    │── header                                         # Header for the intro
+    │    ├── div                                       # Div
+    │    │    ├── h4                                   # h4 text
+    │    │    ├── h1                                   # h1 text
+    │    │    └── h6                                   # h6 text
     │    │
     │    └── button
     │                              
-    └── main                                           # Main (container) (emoji)
-        └── section                                    # Section (container for the charts) (emoji)
-            ├── h1                                     # h1 text (emoji)
-            └── svg                                    # The chart (emoji)             
+    └── main                                           # Main (container)
+        └── section                                    # Section (container for the charts)
+            ├── h1                                     # h1 text
+            └── svg                                    # The chart             
 
 I seperated each chart into a `<section>` that is looks like this:
 
 ```html
 <section>
-    <h1>Mass shootings in the US</h1>
-    <svg class="svgMap"></svg>
+    <h1>Most recent shootings in the US</h1>
+    <p>Below here you can see the amount of people that have been killed by most recent "Mass shootings". You can hover on the bars to see the information more specified.</p>
+    <svg class="svgBar"></svg>
 </section>
 <section>
     <h1>Total mass shootings per race</h1>
+    <p>In this chart you can see how much percentage of a race that has been accused of "Mass shootings".</p>
     <svg class="svgPie"></svg>
 </section>
 <section>
     <h1>Total mass shootings per state</h1>
+    <p>Here you can see how much "Mass shootings" per states there have been</p>
     <svg class="svgBubble"></svg>
 </section>
 ```
 
+I've added the following style to the `section`:
 
+```css
+section {
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 2rem;
+}
+```
 
+Each chart has is own section, so it's better to see them as a seperate chart. Also each section has is own supporting text to show what the user can see and can do. 
 
 ---
 
-
-
-
 ## ***Thoughts*** 💭
-
+I'm not really happy with the overall result. The main thing (the map) didn't worked so I had to made a solution for it. It is really a shame that I didn't had a lot of time to make something cool and unique. Maybe that can be a feedback for the teacher who worked on this project.
 
 ---
 
 ## ***Things that can lift up the quality and usability*** 🏆
 * Adding more interactivity to the pie and bubble chart by seeing a animation when you reach the section when you scroll.
-* 
+* Add a slider to see per year a mass shooting.
+* A more interactive map with more data to add.
+* Could've used more of the data.
+* Add a script to show the chart on scroll.
 
 ---
 
@@ -252,6 +390,7 @@ I seperated each chart into a `<section>` that is looks like this:
 * __[Data from Kaggle](https://www.kaggle.com/carlosparadis/last-50-years-us-mass-shootings/data)__
 * __[Author](https://b.locks.org/mbostock)__
 * __[Map](https://bl.ocks.org/mbostock/4090848)__
+* __[Simple Bar Chart](https://bl.ocks.org/mbostock/3885304)__
 * __[Simple Pie Chart](https://bl.ocks.org/mbostock/3887235)__
 * __[Bubble chart](https://bl.ocks.org/mbostock/3887235)__
 * __[Bubble chart tutorial](https://www.youtube.com/watch?v=gda35eYXBJc&t=15)__
@@ -263,7 +402,11 @@ I seperated each chart into a `<section>` that is looks like this:
 * __[Add a transition to a D3 scatterplot](https://stackoverflow.com/questions/27950920/add-a-transition-to-a-d3j-scatter-plot)__
 * __[How to add a nice legend to a d3 pie chart](https://stackoverflow.com/questions/32298837/how-to-add-a-nice-legend-to-a-d3-pie-chart)__
 
+---
+
 ## ***License***
 All the rights go to __[Mike Bostock](https://b.locks.org/mbostock)__ and __[D3](https://d3js.org/)__. And also al rights to __[Kaggle](https://www.kaggle.com/carlosparadis/last-50-years-us-mass-shootings/data)__ for the data that I've being using.
+
+---
 
 MIT © Dylan van Zanten

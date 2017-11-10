@@ -1,4 +1,4 @@
-$('.c2a').click(function() {
+$('header button').click(function() {
   $('html, body').animate({
     scrollTop: $('main').offset().top - 32
   }, 500);

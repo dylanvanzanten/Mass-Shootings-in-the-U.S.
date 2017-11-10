@@ -1,16 +1,21 @@
 body {
-    background: #161616;
+    background: #202020;
     color: #FFF;
     font-size: 16px;
+    margin: 0;
+    letter-spacing: 0.5px;
 }
 
 h1,
 h2,
-h3,
+h3 {
+    font-family: 'GTSectra-Regular', sans-serif;
+}
+
 h4,
 h5,
 h6 {
-    font-family: ;
+    font-family: 'FoundryMonoline-Regular', sans-serif;
 }
 
 h1 {
@@ -38,7 +43,7 @@ h6 {
 }
 
 p {
-    font-family: ;
+    font-family: 'FoundryMonoline-Regular', sans-serif;
     font-size: 0.9em;
 }
 
@@ -55,50 +60,68 @@ header {
     box-shadow: inset 0px 30px 30px -30px rgba(0, 0, 0, 0.05);
     text-align: center;
     color: #FFF;
+    background: #050505;
 }
 
 .header-text {
-    width: 75vw;
-    animation: wordfade 0.8s 1 0.5s ease-in-out;
-    animation-fill-mode: backwards;
+    width: 50vw;
+    bottom: 50px;
+    opacity: 0;
+    animation: wordfade 1s ease-in-out forwards;
     z-index: 999;
 }
 
-.title {
-    font-family: ;
-}
-
-@keyframes wordfade {
-    0% {
-        top: 50px;
-        opacity: 0;
-    }
-    100% {
-        top: 0px;
-        opacity: 1;
-    }
-}
-
-.c2a {
-    bottom: 10%;
+button {
+    font-family: 'FoundryMonoline-Regular', sans-serif;
+    bottom: 0%;
     margin-left: -50px;
     position: absolute;
     left: 50%;
     text-align: center;
     background: #050505;
-    border: 1px solid #FFFFFF;
+    border: 2px solid #FFFFFF;
     font-size: 0.9em;
+    text-transform: uppercase;
     padding: 1rem;
+    opacity: 0;
     z-index: 1;
     display: block;
     cursor: pointer;
     color: #FFF;
+    animation: btnfade 1s ease-in-out forwards;
+}
+
+button:hover {
+    background: #202020;
+}
+
+button,
+bar {
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+@keyframes wordfade {
+    to {
+        bottom: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes btnfade {
+    to {
+        opacity: 1;
+        bottom: 10%;
+    }
 }
 
 section {
     height: 100vh;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     display: flex;
     padding: 2rem;
 }
@@ -107,16 +130,38 @@ section:nth-child(2) {
     background: #050505;
 }
 
-.states {
-    -webkit-box-shadow: 0 0 100px 0 #050505;
-    box-shadow: 0 0 100px 0 #050505;
+svg {
+    margin: 2rem 0 2rem 0;
 }
 
-.state-borders {
-    fill: none;
-    stroke: #fff;
-    stroke-width: 0.5px;
-    stroke-linejoin: round;
-    stroke-linecap: round;
-    pointer-events: none;
+text {
+    font: 0.9em 'FoundryMonoline-Regular', sans-serif;
+    fill: #FFF;
+}
+
+.domain,
+line {
+    stroke: #FFF;
+    stroke-width: 2px
+}
+
+.toolTip {
+    font-family: 'FoundryMonoline-Regular', sans-serif;
+    position: absolute;
+    display: none;
+    min-width: 80px;
+    height: auto;
+    background: none repeat scroll 0 0 #050505;
+    border: 1px solid #FFF;
+    color: #FFF;
+    padding: 14px;
+    text-align: center;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(5, 5, 5, .5);
+    box-shadow: 0 2px 4px 0 rgba(5, 5, 5, 50);
+}
+
+.svgBubble {
+    display: block;
+    text-anchor: middle;
+    margin: auto;
 }
